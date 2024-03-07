@@ -36,11 +36,11 @@ static const char *TAG = "ESP32_S3_BOX_3";
 esp_err_t get_i2c_pins(i2c_port_t port, i2c_config_t *i2c_config) {
   AUDIO_NULL_CHECK(TAG, i2c_config, return ESP_FAIL);
   if (port == I2C_NUM_0) {
-    i2c_config->sda_io_num = GPIO_NUM_8;
-    i2c_config->scl_io_num = GPIO_NUM_18;
-  } else if (port == I2C_NUM_1) {
     i2c_config->sda_io_num = GPIO_NUM_41;
     i2c_config->scl_io_num = GPIO_NUM_40;
+  } else if (port == I2C_NUM_1) {
+    i2c_config->sda_io_num = -1;
+    i2c_config->scl_io_num = -1;
   } else {
     i2c_config->sda_io_num = -1;
     i2c_config->scl_io_num = -1;
@@ -53,10 +53,10 @@ esp_err_t get_i2c_pins(i2c_port_t port, i2c_config_t *i2c_config) {
 esp_err_t get_i2s_pins(i2s_port_t port, i2s_pin_config_t *i2s_config) {
   AUDIO_NULL_CHECK(TAG, i2s_config, return ESP_FAIL);
   if (port == I2S_NUM_0) {
-    i2s_config->bck_io_num = GPIO_NUM_17;
-    i2s_config->ws_io_num = GPIO_NUM_45;
+    i2s_config->bck_io_num = GPIO_NUM_16;
+    i2s_config->ws_io_num = GPIO_NUM_15;
     i2s_config->data_out_num = GPIO_NUM_15;
-    i2s_config->data_in_num = GPIO_NUM_16;
+    i2s_config->data_in_num = GPIO_NUM_4;
     i2s_config->mck_io_num = GPIO_NUM_2;
   } else {
     memset(i2s_config, -1, sizeof(i2s_pin_config_t));
